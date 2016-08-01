@@ -3,6 +3,7 @@
 use File::Basename;
 use Getopt::Std;
 
+# nxos substitution "cipher"
 @nxos_rot = (3, 22, 4, 5, 18, 0, 21, 5, 18, 3, 10, 5, 16, 22, 4, 16, 24, 17, 12, 5, 21, 18, 5, 22, 19, 7);
 
 my $script = basename($0);
