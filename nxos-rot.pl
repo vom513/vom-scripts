@@ -19,7 +19,7 @@ if (!$opt_d && !$opt_e)
 }
 
 # both options defined ?  exit with error
-if ($opt_d && $opt_e) { print "Please use either -d OR -e.\n"; exit 1;}
+if ($opt_d && $opt_e) { print "Please use either -d OR -e.\n"; exit 1; }
 
 # decrypt case
 if ($opt_d)
