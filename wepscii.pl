@@ -40,16 +40,18 @@ if ($opt_a)
 	$str = $opt_a;
 
 	$length = length($str);
+	$bits = (($length * 8) + 24);
 
 	if (($length != 5) && ($length !=13) && ($length != 16) && ($length != 29))
 	{
-		print "Error: length is $length\n";
+		print "Error: length is $length characters.\n";
 		print "Key must be 5/13/16/29 ascii characters long.\n";
 		exit 1;
 	} 
 	my $h_str = ascii_to_hex $str;
 	disclaimer();
 	print "hex:\t$h_str\n";
+	print "$length characters, $bits bit WEP.\n";
 	exit 0;
 }
 
@@ -63,11 +65,12 @@ if ($opt_h)
 
 	if ($str !~ /^[0-9a-fA-F]+$/) { print "Invalid input / not hex.\n"; exit 1;}
 
-	$length = length($str);
+	$length = (length($str) / 2);
+	$bits = (($length * 8) + 24);
 
-	if (($length != 10) && ($length !=26) && ($length != 32) && ($length != 58))
+	if (($length != 5) && ($length !=13) && ($length != 16) && ($length != 29))
 	{
-		print "Error: length is $length\n";
+		print "Error: length is $length bytes.\n";
 		print "Key must be 5/13/16/29 bytes long.\n";
 		exit 1;
 	} 
@@ -75,8 +78,7 @@ if ($opt_h)
 	my $a_str = hex_to_ascii $str;
 	disclaimer();
 	print "ascii:\t$a_str\n";
+	print "$length bytes, $bits bit WEP.\n";
 	exit 0;
 }
-
-
 
