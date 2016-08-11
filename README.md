@@ -17,3 +17,8 @@
 
 * nxos-rot.pl
 	* Cisco NXOS "rotational" cipher.
+
+### Misc. forks/patches/hacks
+
+* wifite-vom-kali-rolling
+	* wifite hasn't been updated in a while - showing it's age - doesn't quite work on default kali
