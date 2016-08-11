@@ -18,6 +18,9 @@
 * nxos-rot.pl
 	* Cisco NXOS "rotational" cipher.
 
+* mon.sh
+	* Recent linux kernels, wireless drivers, etc very persnickety about changing MAC
+
 ### Misc. forks/patches/hacks
 
 * wifite-vom-kali-rolling
