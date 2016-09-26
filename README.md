@@ -21,7 +21,11 @@
 * mon.sh
 	* Recent linux kernels, wireless drivers, etc very persnickety about changing MAC
 
+* smartreport.pl
+	* Linux / FreeBSD - prints out misc. info about hard disks
+
 ### Misc. forks/patches/hacks
 
 * wifite-vom-kali-rolling
 	* wifite hasn't been updated in a while - showing it's age - doesn't quite work on default kali
+
