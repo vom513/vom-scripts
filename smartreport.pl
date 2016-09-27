@@ -41,15 +41,24 @@ foreach $disk (@disks)
 	$snout = `smartctl -a -n standby /dev/$disk | grep ^Serial`;
 	@sn = split (' ', $snout);
 
+	$modelout = `smartctl -i /dev/$disk | grep ^Model | cut -f 2 -d : | sed 's/^[ \t]*//g'`;
+	chomp $modelout;
+
+	$deviceout = `smartctl -i /dev/$disk | grep ^Device | grep Model: | cut -f 2 -d : | sed 's/^[ \t]*//g'`;
+	chomp $deviceout;
+
 	print color 'cyan';
 	print "$disk:\t";
 	print color 'white';
-	print " SN ";
+	print "SN ";
 	print color 'magenta';
 	print "$sn[2]\n";
-	print color 'cyan';
-	print "=============================\n";
 	print color 'reset';
+	print color 'cyan';
+	print "=================================================\n";
+	print color 'reset';
+	print "Model:\t\t\t$modelout\n";
+	print "Device:\t\t\t$deviceout\n";
 
 	#   5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
 	#
