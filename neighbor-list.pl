@@ -78,7 +78,7 @@ sub runlist() {
 	( $err, $ptr ) = getnameinfo( $addrs[0]->{addr} );
 
 	print color 'blue';
-	printf("%-10s",$dev);
+	printf("%-15s",$dev);
 
 	print color 'white';
 	printf("%-40s",$ip);
