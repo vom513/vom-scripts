@@ -1800,24 +1800,28 @@ def help():
 
 def wps_check_targets(targets, cap_file, verbose=True):
     """
-        Uses reaver's "walsh" (or wash) program to check access points in cap_file
+        Uses reaver's "wash" program to check access points in cap_file
         for WPS functionality. Sets "wps" field of targets that match to True.
     """
     global RUN_CONFIG
 
-    if not program_exists('walsh') and not program_exists('wash'):
-        RUN_CONFIG.WPS_DISABLE = True  # Tell 'scan' we were unable to execute walsh
+    if not program_exists('wash'):
+        RUN_CONFIG.WPS_DISABLE = True  # Tell 'scan' we were unable to execute wash
         return
-    program_name = 'walsh' if program_exists('walsh') else 'wash'
+    if program_exists('wash'): program_name = 'wash'
 
     if len(targets) == 0 or not os.path.exists(cap_file): return
     if verbose:
         print GR + ' [+]' + W + ' checking for ' + G + 'WPS compatibility' + W + '...',
         stdout.flush()
 
-    cmd = [program_name,
-           '-f', cap_file,
-           '-C']  # ignore Frame Check Sum errors
+    #cmd = [program_name,
+    #       '-f', cap_file,
+    #       '-C']  # ignore Frame Check Sum errors
+
+    # wash changes
+    cmd = [program_name, '-f', cap_file]
+
     proc_walsh = Popen(cmd, stdout=PIPE, stderr=DN)
     proc_walsh.wait()
     for line in proc_walsh.communicate()[0].split('\n'):
