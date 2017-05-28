@@ -3385,10 +3385,13 @@ class WPSAttack(Attack):
                '-i', self.iface,
                '-b', self.target.bssid,
                '-o', self.RUN_CONFIG.temp + 'out.out',  # Dump output to file to be monitored
-               '-a',  # auto-detect best options, auto-resumes sessions, doesn't require input!
+
+               # Now that -a is gone, we can't resume sessions arbitrarily.
+               # TODO: Save session to a file, maybe ~/.wifite/
+               '--session', '/dev/null',
                '-c', self.target.channel,
-               # '--ignore-locks',
                '-vv']  # verbose output
+
         proc = Popen(cmd, stdout=DN, stderr=DN)
 
         cracked = False  # Flag for when password/pin is found
