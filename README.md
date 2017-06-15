@@ -24,6 +24,9 @@
 * smartreport.pl
 	* Linux / FreeBSD - prints out misc. info about hard disks
 
+* fourbyte.pl
+	* Convert 32-bit ASN from ASPLAIN <-> ASDOT
+
 ### Misc. forks/patches/hacks
 
 * wifite-vom-kali-rolling
