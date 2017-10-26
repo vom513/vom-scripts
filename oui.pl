@@ -140,7 +140,11 @@ sub parse
 	{
 		# *nix, etc
 		# 00:01:02:03:04:05
-		if ($mac =~ /^(([0-9a-fA-F]{2}):){5}[0-9a-fA-F]{2}$/)
+		# 1:1:2:3:4:5
+		#
+		# * NOTE: macOS omits leading zeros in a given byte, need to pad those later :(
+		#
+		if ($mac =~ /^(([0-9a-fA-F]{1,2}):){5}[0-9a-fA-F]{1,2}$/)
 		{
 			@bytes = split (/:/,$mac); last PARSE;
 		}
@@ -173,6 +177,12 @@ sub parse
 	
 	}
 	
+	# macOS padding
+	#
+	if (length($bytes[0]) == 1) { $bytes[0] = "0".$bytes[0]; }
+	if (length($bytes[1]) == 1) { $bytes[1] = "0".$bytes[1]; }
+	if (length($bytes[2]) == 1) { $bytes[2] = "0".$bytes[2]; }
+
 	$oui = $bytes[0]."-".$bytes[1]."-".$bytes[2];
 	$oui = lc($oui);
 
