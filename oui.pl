@@ -9,7 +9,7 @@ use File::Basename;
 my $script = basename($0);
 
 my @OUIS = ('/usr/share/misc/oui.txt', '/usr/local/etc/oui.txt');
-my $OUI_URL = 'http://standards.ieee.org/regauth/oui/oui.txt';
+my $OUI_URL = 'http://standards-oui.ieee.org/oui.txt';
 my $ouifile;
 
 if (!$ARGV[0]) { print "Usage: $script <mac-address>\n"; exit 1; }

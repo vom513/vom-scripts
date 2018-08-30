@@ -26,9 +26,3 @@
 
 * fourbyte.pl
 	* Convert 32-bit ASN from ASPLAIN <-> ASDOT
-
-### Misc. forks/patches/hacks
-
-* wifite-vom-kali-rolling
-	* wifite hasn't been updated in a while - showing it's age - doesn't quite work on default kali
-

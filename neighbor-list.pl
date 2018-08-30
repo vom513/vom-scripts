@@ -4,7 +4,7 @@ use Socket qw( getaddrinfo getnameinfo );
 use Term::ANSIColor;
 
 my @OUIS = ('/usr/share/misc/oui.txt', '/usr/local/etc/oui.txt');
-my $OUI_URL = 'http://standards.ieee.org/regauth/oui/oui.txt';
+my $OUI_URL = 'http://standards-oui.ieee.org/oui.txt';
 my $oui;
 
 @inet 	=`ip -f inet neigh | grep lladdr | sort -t . -k 1,1n -k 2,2n -k 3,3n -k 4,4n`;
