@@ -16,6 +16,8 @@ check_oui_file();
 
 load_oui_file();
 
+load_internal_macs();
+
 print "\n";
 print "ipv4:\n";
 print "=====\n";
@@ -74,6 +76,13 @@ sub runlist() {
 	($ip,$garbage,$dev,$garbage,$mac,$garbage) = split (' ', $line);
 	$manuf = get_manufactorer_for_mac($mac);
 
+	$internal_mac = $mac;
+	$internal_mac =~ s/://g;
+	
+	$internal_name = $hostdb{$internal_mac};
+
+	if (!$internal_name) { $internal_name = "UNKNOWN"; }
+
 	( $err, @addrs ) = getaddrinfo( $ip, 0 );
 	( $err, $ptr ) = getnameinfo( $addrs[0]->{addr} );
 
@@ -94,11 +103,14 @@ sub runlist() {
 	if (!$ptr) { $ptr = "NO RDNS"; }
 
 	print color 'magenta';
-	print "$ptr\n";
+	printf ("%-55s",$ptr);
+
+	printf ("%-20s",$internal_name);
+	print "\n";
 
 	print color 'reset';
 
-	print "-----------------------------------------------------------------------------------------------------\n";
+	print "--------------------------------------------------------------------------------------------------------------\n";
 	
 	}
 }
@@ -140,4 +152,28 @@ sub load_oui_file() {
                 }
         }
         close (OUI);
+}
+
+sub load_internal_macs() { 
+
+	$internal_macs = "/usr/local/etc/internal-macs.txt";
+
+	open (MACS, $internal_macs) or die "Can't open internal macs file $internal_macs !";
+
+	while (<MACS>)
+	{
+        	$line = $_;
+        	next if ($line =~ /^#/);
+        	next if ($line =~ /^$/);
+        	chomp $line;
+        	($mac, $host) = split (' ', $line);
+
+        	$mac =~ s/://g;
+
+        	$hostdb{$mac} = $host;
+	}
+
+	close MACS;
+
+	keys %hostdb;
 }
