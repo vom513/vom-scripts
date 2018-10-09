@@ -90,7 +90,7 @@ sub runlist() {
 	printf("%-15s",$dev);
 
 	print color 'white';
-	printf("%-40s",$ip);
+	printf("%-45s",$ip);
 
 	print color 'yellow';
 	printf("%-20s",$mac);
@@ -103,14 +103,14 @@ sub runlist() {
 	if (!$ptr) { $ptr = "NO RDNS"; }
 
 	print color 'magenta';
-	printf ("%-55s",$ptr);
+	printf ("%-60s",$ptr);
 
 	printf ("%-20s",$internal_name);
 	print "\n";
 
 	print color 'reset';
 
-	print "--------------------------------------------------------------------------------------------------------------\n";
+	print "--------------------------------------------------------------------------------------------------------------------\n";
 	
 	}
 }
