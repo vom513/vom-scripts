@@ -26,3 +26,6 @@
 
 * fourbyte.pl
 	* Convert 32-bit ASN from ASPLAIN <-> ASDOT
+
+* icecast-list-clients.py
+	* List connected clients and other info from an icecast streaming server
