@@ -49,6 +49,8 @@ stats_root = ET.fromstring(stats_data)
 
 # Init lists
 ips=list()
+ipv4=list()
+ipv6=list()
 uas=list()
 connected=list()
 title=list()
@@ -57,8 +59,15 @@ peak=list()
 # Listeners
 for child in listeners_root.iterfind('.//IP'):
 	ips.append(child.text)
+	if ":" in child.text:
+		ipv6.append(child.text)
+	else:
+		ipv4.append(child.text)
 
 listeners=len(ips)
+
+ipv4s=len(ipv4)
+ipv6s=len(ipv6)
 
 for child in listeners_root.iterfind('.//UserAgent'):
 	uas.append(child.text)
@@ -81,7 +90,7 @@ cpeak = colored(peak[0], 'green')
 
 print "Now playing:", ctitle
 print
-print "Current listeners: %-2s" % (clisteners)
+print "Current listeners: %-2s ( %s ipv4, %s ipv6 )" % (clisteners,ipv4s,ipv6s)
 print "Peak listeners:    %-2s" % (cpeak)
 print "-------------------------------------------------------------------------------------------------------------------------------"
 
