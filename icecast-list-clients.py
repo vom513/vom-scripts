@@ -90,7 +90,7 @@ cpeak = colored(peak[0], 'green')
 
 print "Now playing:", ctitle
 print
-print "Current listeners: %-2s ( %s ipv4, %s ipv6 )" % (clisteners,ipv4s,ipv6s)
+print "Current listeners: %-2s (%s ipv4, %s ipv6)" % (clisteners,ipv4s,ipv6s)
 print "Peak listeners:    %-2s" % (cpeak)
 print "-------------------------------------------------------------------------------------------------------------------------------"
 
