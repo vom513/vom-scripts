@@ -188,7 +188,14 @@ foreach $hostname (@hostnames)
 		# Or channel is 0 (ex: disabled radio)
 		if ($chanval < 2000) 
 		{
-			if ($chanval eq 0) { $chanval = "X"; }
+			if ($chanval eq 0) {
+				$chanval = "X";
+				printf " Chan. ";
+				print color 'red';
+				print $chanval;
+				print color 'cyan';
+				next;
+			}
 			print " Chan. $chanval";
 		}
 		# Channel is Mhz (i.e. 2437) - need to look up in %channelplan
