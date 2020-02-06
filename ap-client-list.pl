@@ -185,8 +185,10 @@ foreach $hostname (@hostnames)
 	foreach $chanval (@sorted_channels)
 	{
 		# Channel is already in "human" readable format (i.e. Chan 6)
+		# Or channel is 0 (ex: disabled radio)
 		if ($chanval < 2000) 
 		{
+			if ($chanval eq 0) { $chanval = "X"; }
 			print " Chan. $chanval";
 		}
 		# Channel is Mhz (i.e. 2437) - need to look up in %channelplan
