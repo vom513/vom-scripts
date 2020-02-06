@@ -29,3 +29,6 @@
 
 * icecast-list-clients.py
 	* List connected clients and other info from an icecast streaming server
+
+* ap-client-list.pl
+	* List wireless client details on Cisco IOS Autonomous/WAP300 (possibly more) APs
