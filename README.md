@@ -1,7 +1,3 @@
-# vom-scripts
-
-### Misc. scripts I've written over the years.
-
 * oui.pl
 	* MAC (OUI) registration lookup (Company name).
 
