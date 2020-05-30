@@ -32,3 +32,6 @@
 
 * ap-client-list.pl
 	* List wireless client details on Cisco IOS Autonomous/WAP300 (possibly more) APs
+
+* ups-remaining.py
+	* Connect to nut (Network UPS Tools), get UPS runtime and battery charge, display, refresh.
