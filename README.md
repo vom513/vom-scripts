@@ -30,3 +30,16 @@
 
 * ups-remaining.py
 	* Connect to nut (Network UPS Tools), get UPS runtime and battery charge, display, refresh.
+
+* isis-net.pl
+	* Convert IS-IS NET IP address and vice versa
+	* Example:
+
+```
+vom@onosendai 💀 vom-scripts % ./isis-net.pl 123.45.67.89
+1230.4506.7089
+vom@onosendai 💀 vom-scripts % ./isis-net.pl 49.0001.1230.4506.7089.00
+123.45.67.89
+vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089           
+123.45.67.89
+```
