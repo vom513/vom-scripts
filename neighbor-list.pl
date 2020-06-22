@@ -105,8 +105,18 @@ sub runlist() {
 	print color 'magenta';
 	printf ("%-60s",$ptr);
 
-	printf ("%-20s",$internal_name);
-	print "\n";
+        if ($internal_name eq "UNKNOWN")
+        {
+                print color 'red';
+                printf ("%-20s",$internal_name);
+                print "\n";
+        }
+        else
+        {
+                print color 'magenta';
+                printf ("%-20s",$internal_name);
+                print "\n";
+        }
 
 	print color 'reset';
 
