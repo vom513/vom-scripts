@@ -39,10 +39,7 @@ try:
 			remaining_seconds = int(remaining_seconds, 10)
 			hms = str(datetime.timedelta(seconds=remaining_seconds))
 
-			print ('%s:' % ups)
-			print "-------------------------------"
-			print "Runtime remaining:", colored(hms, 'cyan')
-			print "Battery charge % :", colored(charge, 'yellow')
+			print ('%s::' % ups), "Remain:", colored(hms, 'cyan'), "Charge:", colored(charge, 'yellow')
 
 		time.sleep(refresh)
 		os.system('clear')
