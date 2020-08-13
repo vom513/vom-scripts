@@ -37,7 +37,7 @@ if ($uname[0] =~ "Linux")
 
 	if (-x $lshw)
 	{
-		@disks = `sudo lshw -quiet -class disk | grep "logical name" | awk '{print $3}' | cut -f 3 -d '/'`;
+		@disks = `sudo lshw -quiet -class disk | egrep -v 'cdrom|cdrw|dvd|sr0' | grep "logical name" | awk '{print $3}' | cut -f 3 -d '/'`;
 	}
 	else
 	{
