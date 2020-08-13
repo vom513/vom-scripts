@@ -22,13 +22,13 @@
 * fourbyte.pl
 	* Convert 32-bit ASN from ASPLAIN <-> ASDOT
 
-* icecast-list-clients.py
+* icecast-list-clients.py(3)
 	* List connected clients and other info from an icecast streaming server
 
 * ap-client-list.pl
 	* List wireless client details on Cisco IOS Autonomous/WAP300 (possibly more) APs
 
-* ups-remaining.py
+* ups-remaining.py(3)
 	* Connect to nut (Network UPS Tools), get UPS runtime and battery charge, display, refresh.
 
 * isis-net.pl
