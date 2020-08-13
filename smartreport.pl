@@ -31,6 +31,7 @@ if ($uname[0] =~ "FreeBSD")
 
 if ($uname[0] =~ "Linux")
 {
+	# Check that we have lshw
 	$lshw = `which lshw`;
 	chomp $lshw;
 
@@ -43,7 +44,19 @@ if ($uname[0] =~ "Linux")
 		print "lshw not found, please check that it is installed (and in your path).\n";
 		exit (1);
 	}
+
 }
+
+# Check that we have smartctl
+$smartctl = `which smartctl`;
+chomp $smartctl;
+
+if (!-x $smartctl)
+{
+	print "smartctl not found, please check that it is installed (and in your path).  Package is typically \"smartmontools\" on Linux.\n";
+	exit (1);
+}
+
 
 foreach $disk (@disks)
 {
