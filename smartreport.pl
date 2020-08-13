@@ -31,7 +31,18 @@ if ($uname[0] =~ "FreeBSD")
 
 if ($uname[0] =~ "Linux")
 {
-	@disks = `sudo lshw -quiet -class disk | grep "logical name" | awk '{print $3}' | cut -f 3 -d '/'`;
+	$lshw = `which lshw`;
+	chomp $lshw;
+
+	if (-x $lshw)
+	{
+		@disks = `sudo lshw -quiet -class disk | grep "logical name" | awk '{print $3}' | cut -f 3 -d '/'`;
+	}
+	else
+	{
+		print "lshw not found, please check that it is installed (and in your path).\n";
+		exit (1);
+	}
 }
 
 foreach $disk (@disks)
