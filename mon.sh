@@ -20,7 +20,8 @@ NC='\033[0m'
 echo
 echo "$GREEN+$NC Stopping network-manager..."
 
-service network-manager stop 2>&1 >/dev/null
+#service network-manager stop 2>&1 >/dev/null
+systemctl stop NetworkManager
 
 echo "$GREEN+$NC Manually killing off dhclient, wpa_supplicant, avahi-daemon..."
 
