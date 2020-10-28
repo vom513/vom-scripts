@@ -28,6 +28,10 @@
 * ap-client-list.pl
 	* List wireless client details on Cisco IOS Autonomous/WAP300 (possibly more) APs
 
+* ap-client-list-engenius.py
+	* List wireless client details on Engenius APs (tested on EWS377AP)
+	* Needs colorama, paramiko, pysnmp
+
 * ups-remaining.py(3)
 	* Connect to nut (Network UPS Tools), get UPS runtime and battery charge, display, refresh.
 
