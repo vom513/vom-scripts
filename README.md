@@ -28,7 +28,7 @@
 * ap-client-list.pl
 	* List wireless client details on Cisco IOS Autonomous/WAP300 (possibly more) APs
 
-* ap-client-list-engenius.py
+* ap-client-list-engenius.py(3)
 	* List wireless client details on Engenius APs (tested on EWS377AP)
 	* Needs colorama, paramiko, pysnmp
 
