@@ -38,7 +38,7 @@ try:
 
 			remaining_seconds = int(remaining_seconds, 10)
 			hms = str(datetime.timedelta(seconds=remaining_seconds))
-			int charge
+			charge=int(charge)
 
 			print (('%s::' % ups), "Remain:", colored(hms, 'cyan'), "Charge:", colored(charge, 'yellow'))
 			print ()
