@@ -35,10 +35,13 @@ try:
 			except subprocess.CalledProcessError as e:
 				print ("Error with ups", ups)
 				continue
+			except subprocess.TimeoutExpired as te:
+				print ("Error with ups", ups)
+				continue
 
 			remaining_seconds = int(remaining_seconds, 10)
 			hms = str(datetime.timedelta(seconds=remaining_seconds))
-			charge=int(charge)
+			charge = int(charge)
 
 			print (('%s::' % ups), "Remain:", colored(hms, 'cyan'), "Charge:", colored(charge, 'yellow'))
 			print ()
