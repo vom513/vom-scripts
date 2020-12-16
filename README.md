@@ -47,3 +47,6 @@ vom@onosendai 💀 vom-scripts % ./isis-net.pl 49.0001.1230.4506.7089.00
 vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089           
 123.45.67.89
 ```
+
+* bgp-comm-format.py
+	* Convert BGP raw decimal community to "new format" and vice-versa.
