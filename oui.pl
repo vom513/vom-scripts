@@ -171,7 +171,14 @@ sub parse
                 	@bytes = unpack ('A2 A2 A2 A2 A2 A2', $mac); last PARSE;
         	}
 
-
+		# Some Arubas ?
+		# 000102-030405
+		if ($mac =~ /^[0-9a-fA-F]{6}-[0-9a-fA-F]{6}$/)
+		{
+			$mac =~ s/-//g;
+			@bytes = unpack ('A2 A2 A2 A2 A2 A2', $mac); last PARSE;
+		}
+	
 	# invalid format
 	if (!@bytes) { return "INVALID"; }
 	
