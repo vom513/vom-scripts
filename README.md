@@ -32,6 +32,14 @@
 	* List wireless client details on Engenius APs (tested on EWS377AP)
 	* Needs colorama, paramiko, pysnmp
 
+* ap-client-list-zyxel.py3
+	* List wireless client details on Zyxel APs (tested on NMA210AX)
+	* Needs colorama, paramiko, pysnmp
+
+* ap-client-list-aruba.py3
+	* List wireless client details on Aruba IAP VC APs (tested on AP515, 8.6.x.x)
+	* Needs colorama, paramiko, pysnmp
+
 * ups-remaining.py(3)
 	* Connect to nut (Network UPS Tools), get UPS runtime and battery charge, display, refresh.
 
