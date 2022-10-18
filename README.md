@@ -40,6 +40,11 @@
 	* List wireless client details on Aruba IAP VC APs (tested on AP515, 8.6.x.x)
 	* Needs colorama, pysnmp
 
+* ap-guest-psk/
+	* Generate random PSK for guest wifi.  <adjective + noun + 4 digit>  Push to Aruba IAP via REST.
+	* You will need to edit the script to change your SSID, password etc.  This was for internal use, so it wasn't made to be "friendly".
+	* Needs qrencode on system.
+
 * ups-remaining.py(3)
 	* Connect to nut (Network UPS Tools), get UPS runtime and battery charge, display, refresh.
 
