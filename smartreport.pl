@@ -71,6 +71,11 @@ foreach $disk (@disks)
 	$deviceout = `smartctl -i /dev/$disk | grep ^Device | grep Model: | cut -f 2 -d : | sed 's/^[ \t]*//g'`;
 	chomp $deviceout;
 
+	$pohout = `smartctl -A /dev/$disk | grep Power_On | awk '{print \$10}'`;
+	chomp $pohout;
+	$days = ($pohout/24);
+	$years = ($pohout/24/365);
+
 	print color 'cyan';
 	print "$disk:\t";
 	print color 'white';
@@ -83,6 +88,7 @@ foreach $disk (@disks)
 	print color 'reset';
 	print "Model:\t\t\t$modelout\n";
 	print "Device:\t\t\t$deviceout\n";
+	printf ("Power On Hours:\t\t%.2f days (%.2f years)\n", $days, $years);
 
 	#   5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
 	#
