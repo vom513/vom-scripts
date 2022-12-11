@@ -84,11 +84,11 @@ foreach $disk (@disks)
 	print "$sn[2]\n";
 	print color 'reset';
 	print color 'cyan';
-	print "=================================================\n";
+	print "===============================================\n";
 	print color 'reset';
-	print "Model:\t\t\t$modelout\n";
-	print "Device:\t\t\t$deviceout\n";
-	printf ("Power On Hours:\t\t%.2f days (%.2f years)\n", $days, $years);
+	printf ("Model:%41s\n", $modelout);
+	printf ("Device:%40s\n", $deviceout);
+	printf ("Power On Hours:%14.2f days (%.2f years)\n", $days, $years);
 
 	#   5 Reallocated_Sector_Ct   0x0033   200   200   140    Pre-fail  Always       -       0
 	#
@@ -98,12 +98,12 @@ foreach $disk (@disks)
 
 	# temp color codes
 
-	print "Temperature:\t\t";
+	printf "Temperature:";
 
         if ($temp[9] <= 39)
         {
 		print color 'green';
-		print "$temp[9]";
+		printf ("%32s", $temp[9]);
 		print color 'reset';
 		print " °C\n";
 	}
@@ -111,7 +111,7 @@ foreach $disk (@disks)
         if ($temp[9] > 39 && $temp[9] < 45)
         {
 		print color 'yellow';
-		print "$temp[9]";
+		printf ("%32s", $temp[9]);
 		print color 'reset';
 		print " °C\n";
 	}
@@ -119,12 +119,12 @@ foreach $disk (@disks)
         if ($temp[9] >= 45)
         {
 		print color 'red';
-		print "$temp[9]";
+		printf ("%32s", $temp[9]);
 		print color 'reset';
 		print " °C\n";
 	}
 
-	$smartout = `smartctl -i -A /dev/$disk |grep -E "^  "5"|^"197"|^"198"|"FAILING_NOW"|"SERIAL""`;
+	$smartout = `smartctl -i -A /dev/$disk | grep -E "^  "5"|^"197"|^"198"|"FAILING_NOW"|"SERIAL""`;
 
 	@lines = split "\n", $smartout;
 
@@ -134,15 +134,15 @@ foreach $disk (@disks)
 
 		@smartvals = split (' ', $line);
 	
-		$descr = $smartvals[1];
+		$descr = $smartvals[1] . ":";
 		$value = $smartvals[9];
 
-		print "$descr:\t";
+		printf ("%-30s", $descr);
 	
 		if ($value == 0)
 		{
 			print color 'green';
-			print "$value\n";
+			printf ("%17s\n", $value);
 			print color 'reset';
 		}
 		else
