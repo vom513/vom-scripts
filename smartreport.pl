@@ -77,7 +77,7 @@ foreach $disk (@disks)
 	$years = ($pohout/24/365);
 
 	print color 'cyan';
-	print "$disk:\t";
+	printf ("%-10s", $disk);
 	print color 'white';
 	print "SN ";
 	print color 'magenta';
