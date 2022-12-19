@@ -5,6 +5,7 @@
 #================================================================
 
 import argparse
+import getpass
 import time
 import datetime
 from colorama import Style, Fore, Back
@@ -12,14 +13,13 @@ from pysnmp.hlapi import *
 
 parser = argparse.ArgumentParser(description = 'Connects to Aruba IAP VC(s), enumerates APs, and connected client info.')
 parser.add_argument('-vcs', type=str, required=True, help='Comma seperated list of VCs')
-parser.add_argument('-c', type=str, metavar='COMMUNITY', required=True, help='SNMP community')
 parser.add_argument('-m', type=str, metavar='MACFILE', default='/usr/local/etc/internal-macs.txt', help='Location of MAC address file (optional), defaults to /usr/local/etc/internal-macs.txt.  Format is simply mac <tab> short_hostname.  MAC format is xx:xx:xx:xx:xx:xx')
 
 args = parser.parse_args()
 
 vclist		= args.vcs.split(",")
 
-snmpcomm = args.c
+snmpcomm = getpass.getpass(prompt='SNMP community: ')
 macfile = args.m
 
 # Read in internal mac file
