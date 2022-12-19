@@ -11,7 +11,7 @@ import datetime
 from colorama import Style, Fore, Back
 from pysnmp.hlapi import *
 
-parser = argparse.ArgumentParser(description = 'Connects to Aruba IAP VC(s), enumerates APs, and connected client info.')
+parser = argparse.ArgumentParser(description = 'Connects to Aruba IAP VC(s), enumerates APs, and connected client info.  SNMP community will be read via prompt.')
 parser.add_argument('-vcs', type=str, required=True, help='Comma seperated list of VCs')
 parser.add_argument('-m', type=str, metavar='MACFILE', default='/usr/local/etc/internal-macs.txt', help='Location of MAC address file (optional), defaults to /usr/local/etc/internal-macs.txt.  Format is simply mac <tab> short_hostname.  MAC format is xx:xx:xx:xx:xx:xx')
 
