@@ -63,3 +63,6 @@ vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089
 
 * bgp-comm-format.py
 	* Convert BGP raw decimal community to "new format" and vice-versa.
+
+* generate-parental-agents/
+	* Script to create BIND file with parental agents (upstream NS's) for given zone
