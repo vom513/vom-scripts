@@ -248,9 +248,11 @@ for vc in vclist:
 
 
 		# Print channels, more header misc.
-		# Current frequencies: Chan. X Chan. 5
-		(channel5g, channel2g) = channels
-		print ("Current frequencies: " + Fore.CYAN + "Chan. %s Chan. %s" % (channel2g, channel5g), end = '')
+		chanstr = ""
+		for i in channels:
+			chanstr = (chanstr + " " + i)
+
+		print ("Current frequencies: " + Fore.CYAN + "Channels:%s" % (chanstr), end = '')
 		print (Style.RESET_ALL)
 		print ("-----------------------------------------------------------------------------")
 		print ("Client                  MAC                 SSID        SNR            Uptime")
