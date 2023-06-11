@@ -66,3 +66,6 @@ vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089
 
 * generate-parental-agents/
 	* Script to create BIND file with parental agents (upstream NS's) for given zone
+
+* kea-lease-list4.py
+	* Retrieve all DHCP (v4) leases from Kea via management API.  Needs a few extra modules (mac_vendor_lookup, colorama, etc).
