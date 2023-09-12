@@ -10,20 +10,25 @@ from termcolor import colored
 # List of UPSes to monitor.  <ups_name>@<hostname> format. Or just <ups_name> is for a locally connected unit.
 upses = ('ups', 'ups@fileserver1', 'ups@testbox')
 
+refresh = 15
+
 os.system('clear')
 
 try:
-	refresh = 15
 
 	while True:
 		print ()
 		print ("Refreshing every", refresh, "seconds")
-		print ("===============================")
+		print ("="*80)
 
 		now = datetime.datetime.now().strftime("%a %B %d %Y %H:%M:%S")
 
 		print (now)
 		print ()
+
+		# Print header
+		print ('%-28s %4s %15s' % ("UPS", "Charge", "Time Remaining"))
+		print ("-"*80)
 
 		for ups in upses:
 			charge = 0
@@ -76,7 +81,7 @@ try:
 			if (charge == 0):
 				charge = "N/A"
 
-			print (('%s::' % ups), "Remain:", colored(hms, 'cyan'), "Charge:", colored(charge, 'yellow'))
+			print ('%-28s %-16s %-60s' % (ups, colored(charge, 'yellow'), colored(hms, 'cyan')))
 			print ()
 
 		time.sleep(refresh)
