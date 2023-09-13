@@ -19,7 +19,7 @@ try:
 	while True:
 		print ()
 		print ("Refreshing every", refresh, "seconds")
-		print ("="*80)
+		print ()
 
 		now = datetime.datetime.now().strftime("%a %B %d %Y %H:%M:%S")
 
@@ -28,7 +28,7 @@ try:
 
 		# Print header
 		print ('%-28s %4s %15s' % ("UPS", "Charge", "Time Remaining"))
-		print ("-"*80)
+		print ("="*80)
 
 		for ups in upses:
 			charge = 0
@@ -82,7 +82,8 @@ try:
 				charge = "N/A"
 
 			print ('%-28s %-16s %-60s' % (ups, colored(charge, 'yellow'), colored(hms, 'cyan')))
-			print ()
+			#print (('%s::' % ups), "Remain:", colored(hms, 'cyan'), "Charge:", colored(charge, 'yellow'))
+			print ("-"*80)
 
 		time.sleep(refresh)
 		os.system('clear')
