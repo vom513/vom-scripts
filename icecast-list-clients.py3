@@ -6,6 +6,9 @@ import base64
 from termcolor import colored
 from dns import resolver,reversename,exception
 import sys
+#import warnings
+
+#warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 listeners_url="http://FIXME:8000/admin/listclients?mount=/FIXME"
 stats_url="http://FIXME:8000/admin/stats?mount=/FIXME"
@@ -93,7 +96,7 @@ for i in range(0, listeners):
 	addr=reversename.from_address(ips[i])
 
 	try:
-		answer = str(resolver.query(addr,"PTR")[0])
+		answer = str(resolver.resolve(addr,"PTR")[0])
 		answer = answer.rstrip('.')
 		rdns = colored(answer, 'blue')
 	except resolver.NXDOMAIN:
