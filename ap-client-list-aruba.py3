@@ -38,21 +38,25 @@ def mac2oid(mac):
 
 	bytes = mac.split(':')
 
-	b0 = int(bytes[0], 16)
-	b1 = int(bytes[1], 16)
-	b2 = int(bytes[2], 16)
-	b3 = int(bytes[3], 16)
-	b4 = int(bytes[4], 16)
-	b5 = int(bytes[5], 16)
+	try:
+		b0 = int(bytes[0], 16)
+		b1 = int(bytes[1], 16)
+		b2 = int(bytes[2], 16)
+		b3 = int(bytes[3], 16)
+		b4 = int(bytes[4], 16)
+		b5 = int(bytes[5], 16)
 
-	b0=str(b0)
-	b1=str(b1)
-	b2=str(b2)
-	b3=str(b3)
-	b4=str(b4)
-	b5=str(b5)
+		b0=str(b0)
+		b1=str(b1)
+		b2=str(b2)
+		b3=str(b3)
+		b4=str(b4)
+		b5=str(b5)
 
-	macdec = b0 + '.' + b1 + '.' + b2 + '.' + b3 + '.' + b4 + '.' + b5
+		macdec = b0 + '.' + b1 + '.' + b2 + '.' + b3 + '.' + b4 + '.' + b5
+
+	except:
+		macdec = "0.0.0.0.0.0"
 
 	return macdec
 
@@ -109,6 +113,7 @@ for vc in vclist:
 					mac = varBind[1].prettyPrint()
 					mac = mac[2:]
 					mac = ':'.join(mac[i:i+2] for i in range(0, len(mac), 2))
+					# print (mac)
 					coid = mac2oid(mac)
 
 					# client to BSSID association
