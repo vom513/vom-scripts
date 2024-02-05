@@ -326,6 +326,6 @@ if (macbug > 0):
 	cwarning = ("!!! " + Fore.RED + "Warning " + Fore.CYAN + macbug + Style.RESET_ALL + " clients are not listed due to an Aruba bug.  Please check the VC through CLI/WEBUI to see all. !!!")
 	print (cwarning)
 
-# Blank seperator line
-print ()
+	# Blank seperator line
+	print ()
 
