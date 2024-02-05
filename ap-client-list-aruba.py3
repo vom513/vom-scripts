@@ -38,6 +38,11 @@ def mac2oid(mac):
 
 	bytes = mac.split(':')
 
+	# I had to wrap this in a try due to an apparent Aruba bug.
+	# I have one client (so far) that the VC returns a STRING and not Hex-STRING for the MAC address.
+	# Furthermore, it's value is "garbage".  If we hit this, we return 0.0.0.0.0.0 as the decimal OID.
+	# We then increment this below at the appropriate step and print a warning at the end if this is > 0.
+
 	try:
 		b0 = int(bytes[0], 16)
 		b1 = int(bytes[1], 16)
@@ -101,6 +106,7 @@ for vc in vclist:
 	# Station list
 	clients = []
 	oid = '1.3.6.1.4.1.14823.2.3.3.1.2.4.1.1'
+	macbug = 0
 	for (errorIndication, errorStatus, errorIndex, varBinds) in nextCmd(SnmpEngine(),
 		CommunityData(snmpcomm),
 		UdpTransportTarget((vc, 161)),
@@ -113,8 +119,9 @@ for vc in vclist:
 					mac = varBind[1].prettyPrint()
 					mac = mac[2:]
 					mac = ':'.join(mac[i:i+2] for i in range(0, len(mac), 2))
-					# print (mac)
 					coid = mac2oid(mac)
+					if (coid == "0.0.0.0.0.0"):
+						macbug += 1
 
 					# client to BSSID association
 					oid = '1.3.6.1.4.1.14823.2.3.3.1.2.4.1.2' + '.' + coid
@@ -311,6 +318,14 @@ for vc in vclist:
 		if (index == 0):
 			print ("NO CLIENTS")
 
-		# Blank seperator line
 		print ()
+
+# Aruba macbug warning
+if (macbug > 0):
+	macbug = str(macbug)
+	cwarning = ("!!! " + Fore.RED + "Warning " + Fore.CYAN + macbug + Style.RESET_ALL + " clients are not listed due to an Aruba bug.  Please check the VC through CLI/WEBUI to see all. !!!")
+	print (cwarning)
+
+# Blank seperator line
+print ()
 
