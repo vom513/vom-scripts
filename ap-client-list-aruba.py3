@@ -38,30 +38,46 @@ def mac2oid(mac):
 
 	bytes = mac.split(':')
 
-	# I had to wrap this in a try due to an apparent Aruba bug.
-	# I have one client (so far) that the VC returns a STRING and not Hex-STRING for the MAC address.
-	# Furthermore, it's value is "garbage".  If we hit this, we return 0.0.0.0.0.0 as the decimal OID.
-	# We then increment this below at the appropriate step and print a warning at the end if this is > 0.
+	b0 = int(bytes[0], 16)
+	b1 = int(bytes[1], 16)
+	b2 = int(bytes[2], 16)
+	b3 = int(bytes[3], 16)
+	b4 = int(bytes[4], 16)
+	b5 = int(bytes[5], 16)
 
-	try:
-		b0 = int(bytes[0], 16)
-		b1 = int(bytes[1], 16)
-		b2 = int(bytes[2], 16)
-		b3 = int(bytes[3], 16)
-		b4 = int(bytes[4], 16)
-		b5 = int(bytes[5], 16)
+	b0=str(b0)
+	b1=str(b1)
+	b2=str(b2)
+	b3=str(b3)
+	b4=str(b4)
+	b5=str(b5)
 
-		b0=str(b0)
-		b1=str(b1)
-		b2=str(b2)
-		b3=str(b3)
-		b4=str(b4)
-		b5=str(b5)
+	macdec = b0 + '.' + b1 + '.' + b2 + '.' + b3 + '.' + b4 + '.' + b5
 
-		macdec = b0 + '.' + b1 + '.' + b2 + '.' + b3 + '.' + b4 + '.' + b5
+	return macdec
 
-	except:
-		macdec = "0.0.0.0.0.0"
+def smac2oid(mac):
+
+	bytes = []
+
+	for char in mac:
+		bytes.append(char)
+
+	b0 = (ord(bytes[0]))
+	b1 = (ord(bytes[1]))
+	b2 = (ord(bytes[2]))
+	b3 = (ord(bytes[3]))
+	b4 = (ord(bytes[4]))
+	b5 = (ord(bytes[5]))
+
+	b0=str(b0)
+	b1=str(b1)
+	b2=str(b2)
+	b3=str(b3)
+	b4=str(b4)
+	b5=str(b5)
+
+	macdec = b0 + '.' + b1 + '.' + b2 + '.' + b3 + '.' + b4 + '.' + b5
 
 	return macdec
 
@@ -117,11 +133,14 @@ for vc in vclist:
 			if not errorIndication and not errorStatus:
 				for varBind in varBinds:
 					mac = varBind[1].prettyPrint()
-					mac = mac[2:]
-					mac = ':'.join(mac[i:i+2] for i in range(0, len(mac), 2))
-					coid = mac2oid(mac)
-					if (coid == "0.0.0.0.0.0"):
-						macbug += 1
+
+					# Got a string encoded mac returned
+					if (len(mac) == 6):
+						coid = smac2oid(mac)
+					else:
+						mac = mac[2:]
+						mac = ':'.join(mac[i:i+2] for i in range(0, len(mac), 2))
+						coid = mac2oid(mac)
 
 					# client to BSSID association
 					oid = '1.3.6.1.4.1.14823.2.3.3.1.2.4.1.2' + '.' + coid
@@ -283,6 +302,12 @@ for vc in vclist:
 
 					mac = row[0]
 
+					# Sometimes we get client macs as ASCII strings.  Aruba says this is normal.  Whatever...  This is a mess.
+					if (len(mac) == 6):
+						coid = smac2oid(mac)
+						macdec = coid.split(".")
+						mac = (hex(int(macdec[0])).replace('0x','') + ':' + hex(int(macdec[1])).replace('0x','') + ':' + hex(int(macdec[2])).replace('0x','') + ':' + hex(int(macdec[3])).replace('0x','') + ':' + hex(int(macdec[4])).replace('0x','') + ':' + hex(int(macdec[5])).replace('0x',''))
+
 					cuptime = row[2]
 					cuptime = int(cuptime)
 					cupseconds = cuptime/100
@@ -295,10 +320,6 @@ for vc in vclist:
 					cmac = Fore.YELLOW + mac + Style.RESET_ALL
 
 					snr = str(snr).zfill(2)
-					#rssi = rssi.lstrip('-')
-					#rssi = int(rssi)
-					#rssi = (100 - rssi)
-					#rssi = str(rssi)
 					csnr = Fore.BLUE + snr + Style.RESET_ALL
 
 					if mac in hostdb.keys():
@@ -319,12 +340,6 @@ for vc in vclist:
 			print ("NO CLIENTS")
 
 		print ()
-
-# Aruba macbug warning
-if (macbug > 0):
-	macbug = str(macbug)
-	cwarning = ("!!! " + Fore.RED + "Warning " + Fore.CYAN + macbug + Style.RESET_ALL + " clients are not listed due to an Aruba bug.  Please check the VC through CLI/WEBUI to see all. !!!")
-	print (cwarning)
 
 	# Blank seperator line
 	print ()
