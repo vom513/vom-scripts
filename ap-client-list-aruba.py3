@@ -34,6 +34,7 @@ except EnvironmentError:
 	print ('Problem reading file', macfile, "!")
 	exit(1)
 
+# Convert xx:xx:xx:xx:xx:xx to OID
 def mac2oid(mac):
 
 	bytes = mac.split(':')
@@ -56,6 +57,7 @@ def mac2oid(mac):
 
 	return macdec
 
+# Convert ASCII MAC to OID
 def smac2oid(mac):
 
 	bytes = []
@@ -80,6 +82,32 @@ def smac2oid(mac):
 	macdec = b0 + '.' + b1 + '.' + b2 + '.' + b3 + '.' + b4 + '.' + b5
 
 	return macdec
+
+# Convert ASCII MAC to xx:xx:xx:xx:xx:xx MAC
+def smac2mac(mac):
+
+	bytes = []
+
+	for char in mac:
+		bytes.append(char)
+
+	b0 = format(ord(bytes[0]), "x")
+	b1 = format(ord(bytes[1]), "x")
+	b2 = format(ord(bytes[2]), "x")
+	b3 = format(ord(bytes[3]), "x")
+	b4 = format(ord(bytes[4]), "x")
+	b5 = format(ord(bytes[5]), "x")
+
+	b0=str(b0)
+	b1=str(b1)
+	b2=str(b2)
+	b3=str(b3)
+	b4=str(b4)
+	b5=str(b5)
+
+	mac = b0 + ':' + b1 + ':' + b2 + ':' + b3 + ':' + b4 + ':' + b5
+
+	return mac
 
 # Start with a blank line
 print ()
@@ -302,11 +330,9 @@ for vc in vclist:
 
 					mac = row[0]
 
-					# Sometimes we get client macs as ASCII strings.  Aruba says this is normal.  Whatever...  This is a mess.
+					# Sometimes we get client macs as ASCII strings.  Aruba says this is normal.  Agree to disagree...
 					if (len(mac) == 6):
-						coid = smac2oid(mac)
-						macdec = coid.split(".")
-						mac = (hex(int(macdec[0])).replace('0x','') + ':' + hex(int(macdec[1])).replace('0x','') + ':' + hex(int(macdec[2])).replace('0x','') + ':' + hex(int(macdec[3])).replace('0x','') + ':' + hex(int(macdec[4])).replace('0x','') + ':' + hex(int(macdec[5])).replace('0x',''))
+						mac  = smac2mac(mac)
 
 					cuptime = row[2]
 					cuptime = int(cuptime)
@@ -342,5 +368,5 @@ for vc in vclist:
 		print ()
 
 	# Blank seperator line
-	print ()
+	#print ()
 
