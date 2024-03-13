@@ -328,11 +328,14 @@ for vc in vclist:
 			for row in clients:
 				if (apbssid == row[1]):
 
+					arubabug = 0
+
 					mac = row[0]
 
 					# Sometimes we get client macs as ASCII strings.  Aruba says this is normal.  Agree to disagree...
 					if (len(mac) == 6):
 						mac  = smac2mac(mac)
+						arubabug = 1
 
 					cuptime = row[2]
 					cuptime = int(cuptime)
@@ -354,6 +357,9 @@ for vc in vclist:
 					else:
 						client = "UNKNOWN"
 						cclient = Fore.RED + client + Style.RESET_ALL
+
+					if (arubabug == 1):
+						cmac = cmac + "*"
 
 					# Print out each entry
 					print ('%-32s %-28s %-20s %-6s %18s' % (cclient, cmac, cssid, csnr, cuptime))
