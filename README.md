@@ -69,3 +69,6 @@ vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089
 
 * kea-lease-list4.py
 	* Retrieve all DHCP (v4) leases from Kea via management API.  Needs a few extra modules (mac_vendor_lookup, colorama, etc).
+
+* kea-lease-delete4.sh
+	* Delete an IPv4 lease from kea server(s).  Needs curl.  Assumes no authentication.
