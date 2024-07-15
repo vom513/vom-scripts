@@ -1,0 +1,11 @@
+#!/bin/sh
+
+HOSTNAME=`hostname`
+DATE=`date +%D`
+TMP="/tmp/fail2ban-report.$$"
+
+/usr/local/bin/fail2ban-report.py > $TMP
+
+cat $TMP | mail -s "$HOSTNAME - fail2ban report for $DATE" root
+
+rm -f $TMP

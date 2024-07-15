@@ -72,3 +72,10 @@ vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089
 
 * kea-lease-delete4.sh
 	* Delete an IPv4 lease from kea server(s).  Needs curl.  Assumes no authentication.
+
+* fail2ban-report.py
+	* Pulls from systemd journal to make a nicely formatted report for the last day of all f2b ban/unbans. Having tons of issues with logwatch and systemd-journal (ex: Debian >= 12) - hence writing this.
+
+* fail2ban-report
+	* Simple shell wrapper for the above report script.  Mails to root.  I put mine in cron daily.
+
