@@ -9,9 +9,11 @@
 	* List wireless client details on Zyxel APs (tested on NMA210AX)
 	* Needs colorama, pysnmp
 
-* ap-client-list-aruba.py3
+* ap-client-list-aruba-*.py3
 	* List wireless client details on Aruba IAP VC APs (tested on AP515, 8.6.x.x)
-	* Needs colorama, pysnmp
+	* Needs colorama, pysnmp4
+	* Multiple versions here.  One was written using pysnmp4.  pysnmp6 is the current and it breaks with this.
+	* Also a very dirty version that uses net-snmp (snmpget/walk) + awk/sed/etc.
 
 * ap-guest-psk/
 	* Generate random PSK for guest wifi.  <adjective + noun + 4 digit>  Push to Aruba IAP via REST.
