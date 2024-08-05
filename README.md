@@ -10,8 +10,8 @@
 	* Needs colorama, pysnmp
 
 * ap-client-list-aruba-*.py3
-	* List wireless client details on Aruba IAP VC APs (tested on AP515, 8.6.x.x)
-	* Needs colorama, pysnmp4
+	* List wireless client details on Aruba IAP VC APs (tested on AP515, 8.6.x.x, 8.10.x.x)
+	* Needs colorama, [net-snmp package|pysnmp4|easysnmp] depending on version
 	* Multiple versions here.  net-snmp, pysnmp4, easysnmp.  pysnmp6 deprecated the simple/synchronous interface so it's now too complex for what I'm trying to do.
 
 * ap-guest-psk/
