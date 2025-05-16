@@ -137,7 +137,7 @@ for vc in vclist:
 		results = session.walk(oid)
 
 	except EasySNMPTimeoutError:
-		print('Bad SNMP community for VC', vc, '?  Skipping...')
+		print('Bad SNMP community for VC', vc, '(or down) ?  Skipping...')
 		print()
 		continue
 
