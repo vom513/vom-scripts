@@ -6,9 +6,6 @@ import base64
 from termcolor import colored
 from dns import resolver,reversename,exception
 import sys
-#import warnings
-
-#warnings.filterwarnings("ignore", category=DeprecationWarning) 
 
 listeners_url="http://FIXME:8000/admin/listclients?mount=/FIXME"
 stats_url="http://FIXME:8000/admin/stats?mount=/FIXME"
@@ -63,6 +60,9 @@ listeners=len(ips)
 ipv4s=len(ipv4)
 ipv6s=len(ipv6)
 
+percentv4 = int((ipv4s / listeners) * 100)
+percentv6 = int((ipv6s / listeners) * 100)
+
 for child in listeners_root.iterfind('.//UserAgent'):
 	uas.append(child.text)
 
@@ -84,7 +84,7 @@ cpeak = colored(peak[0], 'green')
 
 print ("Now playing:", ctitle)
 print ("")
-print ("Current listeners: %-2s (%s ipv4, %s ipv6)" % (clisteners,ipv4s,ipv6s))
+print ("Current listeners: %-2s (%s%% ipv4 / %s%% ipv6)" % (clisteners,percentv4,percentv6))
 print ("Peak listeners:    %-2s" % (cpeak))
 print ("-------------------------------------------------------------------------------------------------------------------------------")
 
