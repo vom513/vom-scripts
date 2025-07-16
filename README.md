@@ -79,3 +79,5 @@ vom@onosendai 💀 vom-scripts % ./isis-net.pl 1230.4506.7089
 
 * wepscii.pl
 	* Convert ascii->hex, hex->ascii for WEP keys.
+
+* Testing VSCode whatnots - ignore !
