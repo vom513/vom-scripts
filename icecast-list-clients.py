@@ -66,6 +66,10 @@ for child in listeners_root.iterfind('.//IP'):
 
 listeners=len(ips)
 
+if (listeners == 0):
+        print ("No current listeners, exiting...")
+        sys.exit(0)
+
 ipv4s=len(ipv4)
 ipv6s=len(ipv6)
 
