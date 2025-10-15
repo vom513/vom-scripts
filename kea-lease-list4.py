@@ -3,7 +3,7 @@
 
 import requests
 import json
-from datetime import datetime
+import datetime
 import mac_vendor_lookup
 import os
 import time
@@ -60,7 +60,7 @@ for lease in (leasedict['leases']):
     valid  = (lease['valid-lft'])
     expire = (start + valid)
 
-    uexpire = datetime.utcfromtimestamp(expire)
+    uexpire = datetime.datetime.fromtimestamp(expire, datetime.UTC)
 
     datefmt = "%Y%m%d %H:%M:%S"
 
